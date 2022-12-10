@@ -34,7 +34,7 @@ jobs:
         if: always()
         with:
           name: Test Results
-          path: ${{steps.testRunner.outputs.artifcatsPath}}
+          path: ${{steps.testRunner.outputs.artifactsPath}}
 
       - uses: actions/upload-artifact@v2
         if: always()
