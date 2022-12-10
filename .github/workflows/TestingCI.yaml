@@ -1,10 +1,6 @@
 name: GameCI
 
-on:
-  push:
-    branches:
-      - development
-
+on: push
 
 jobs:
   testRunner:
