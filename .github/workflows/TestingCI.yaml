@@ -7,16 +7,17 @@ on:
 
 
 jobs:
-  build:
-    name: Build Project
+  testRunner:
+    name: Run Unity Test and Build Project
     runs-on: ubuntu-latest
     steps:
       #checkout
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      #Cache
-      - uses: actions/cache@v2
+      #Cache any Large Files
+      - name: Caching Large Files
+        uses: actions/cache@v2
         with:
           path: Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
@@ -26,24 +27,33 @@ jobs:
       #Testing
       - name: Run Unity Tests
         uses: game-ci/unity-test-runner@v2
+        id: testRunner
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          testMode: all
 
-      # Build
-      - name: Build project
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v2
         with:
-          targetPlatform: WebGL
+          name: Test Results
+          path: ${{steps.testRunner.outputs.artifcatsPath }}
+        
 
-      # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build
-          path: build
+      # # Build
+      # - name: Build Windows project
+      #   uses: game-ci/unity-builder@v2
+      #   env:
+      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      #     UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+      #     UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      #   with:
+      #     targetPlatform: Windows
+
+      # # Output
+      # - uses: actions/upload-artifact@v2
+      #   with:
+      #     name: Build
+      #     path: build
 
