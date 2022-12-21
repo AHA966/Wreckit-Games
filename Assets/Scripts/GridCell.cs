@@ -35,4 +35,20 @@ public class GridCell : MonoBehaviour
     public Vector2Int GetPosition(){
         return new Vector2Int(Posx,Posy); 
     }
+
+    public void OnCollisionEnter (Collision other) 
+     {
+        print("Collision");
+        if(other.gameObject.name == "Player"){
+            Debug.Log("Detected");
+            GetComponentInChildren<SpriteRenderer>().material.color = Color.green;
+        }
+     }
+ 
+    public void OnCollisionExit (Collision other) 
+     {
+         print("CollisionExit");
+     }
+
+
 }

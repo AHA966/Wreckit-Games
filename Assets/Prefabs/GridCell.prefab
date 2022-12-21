@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5517065158043041142}
   - component: {fileID: 8417546873802580373}
-  - component: {fileID: 8384217759019263249}
+  - component: {fileID: 7186580885453084054}
   m_Layer: 6
   m_Name: GridCell
   m_TagString: Untagged
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectInThisGridSpace: {fileID: 0}
   isOccupied: 0
---- !u!65 &8384217759019263249
+--- !u!65 &7186580885453084054
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,5 +143,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 1}
+  m_Size: {x: 3, y: 3, z: 1}
   m_Center: {x: 2.5, y: 2.5, z: 0}
