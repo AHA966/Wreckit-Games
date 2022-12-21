@@ -38,6 +38,8 @@ public class GameGrid : MonoBehaviour
                 gameGrid[x,y].gameObject.name = x.ToString() + y.ToString(); 
             }
         }
+
+        transform.rotation = Quaternion.Euler(90, 0f, 0f);
     }
 
     public Vector2Int GetGridPos(Vector3 worldPos){
