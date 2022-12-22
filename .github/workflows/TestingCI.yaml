@@ -41,21 +41,20 @@ jobs:
         with:
           name: Coverage Results
           path: ${{steps.testRunner.outputs.coveragePath }}
-        
+          
+        #Building
+      - name: Build Windows project
+        uses: game-ci/unity-builder@v2
+        env:
+           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: Windows
 
-      # # Build
-      # - name: Build Windows project
-      #   uses: game-ci/unity-builder@v2
-      #   env:
-      #     UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      #     UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-      #     UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-      #   with:
-      #     targetPlatform: Windows
-
-      # # Output
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: Build
-      #     path: build
+       # Output
+      - uses: actions/upload-artifact@v2
+        with:
+            name: Build
+            path: build
 
