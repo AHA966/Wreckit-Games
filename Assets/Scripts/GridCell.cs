@@ -7,6 +7,9 @@ public class GridCell : MonoBehaviour
 
     private int Posx;
     private int Posy;
+    private bool touched = false;
+
+   
 
 //refernce to the object on the grid square
     public GameObject objectInThisGridSpace = null;
@@ -16,8 +19,8 @@ public class GridCell : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {   
+    
     }
 
     // Update is called once per frame
@@ -40,8 +43,19 @@ public class GridCell : MonoBehaviour
      {
         print("Collision");
         if(other.gameObject.name == "Player"){
-            Debug.Log("Detected");
-            GetComponentInChildren<SpriteRenderer>().material.color = Color.green;
+
+            if(touched == false){
+                GetComponentInChildren<SpriteRenderer>().material.color = Color.green;
+                touched = true;
+
+                Movement player = other.collider.GetComponent(typeof(Movement)) as Movement;
+                Score text = other.collider.GetComponent(typeof(Score)) as Score;
+                
+                player.addTile();
+                text.setScore(player.getScore());
+        
+            }
+            
         }
      }
  

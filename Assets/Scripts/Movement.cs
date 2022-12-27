@@ -20,6 +20,8 @@ public class Movement : MonoBehaviour
     [SerializeField] float groundedGravity = -0.5f;
     [SerializeField] float jumpHeight = 3f;
 
+    public static int Score = 0;
+
 void HandleGravityAndJump()
 {
     if (controller.isGrounded && velocityY < 0f)
@@ -61,6 +63,18 @@ velocityY -= gravity * gravityMultiplier * Time.deltaTime;
 
     HandleGravityAndJump();
 
+    }
+
+    public void addTile(){
+        Score++;
+    }
+
+    public void loseTile(){
+        Score--;
+    }
+
+    public int getScore(){
+        return Score;
     }
 
     
