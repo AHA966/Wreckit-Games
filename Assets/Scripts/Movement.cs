@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Movement : MonoBehaviour
 {
 
+    private PhotonView PV;
+
     CharacterController controller; 
     private float speed = 6;
     Camera cam;
+
     //serialize field makes the variable appear in inspector without //having to make it private
     [SerializeField] float rotationSmoothTime = -0.15f; 
     float currentAngle; 
@@ -26,15 +30,17 @@ void HandleGravityAndJump()
 {
     if (controller.isGrounded && velocityY < 0f)
         velocityY = groundedGravity;
-if (controller.isGrounded)
-    {
-        velocityY = Mathf.Sqrt(jumpHeight * 2f * gravity);
-    }
-velocityY -= gravity * gravityMultiplier * Time.deltaTime;
+
+    if (controller.isGrounded)
+        {
+            velocityY = Mathf.Sqrt(jumpHeight * 2f * gravity);
+        }
+
+    velocityY -= gravity * gravityMultiplier * Time.deltaTime;
     controller.Move(Vector3.up * velocityY * Time.deltaTime);
 }
 
-// Start is called before the first frame update 
+    // Start is called before the first frame update 
     void Awake() 
     {      
         controller = GetComponent<CharacterController>(); 
@@ -44,25 +50,27 @@ velocityY -= gravity * gravityMultiplier * Time.deltaTime;
     // Start is called before the first frame update
     void Start()
     {
-        
+        PV = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        if(PV.IsMine)
+        {
+            Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
-        if (movement.magnitude >= 0.1f)
-    {
-        float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
-        currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref currentAngleVelocity, rotationSmoothTime);
-        transform.rotation = Quaternion.Euler(0, currentAngle-90, 0);
-        controller.Move(movement* speed * Time.deltaTime);
-    }
-// "speed" is a private float variable that is used to control the speed of the player
+            if (movement.magnitude >= 0.1f)
+            {
+                float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
+                currentAngle = Mathf.SmoothDampAngle(currentAngle, targetAngle, ref currentAngleVelocity, rotationSmoothTime);
+                transform.rotation = Quaternion.Euler(0, currentAngle-90, 0);
+                controller.Move(movement* speed * Time.deltaTime);
+            }
+            // "speed" is a private float variable that is used to control the speed of the player
 
-    HandleGravityAndJump();
-
+            HandleGravityAndJump();
+        }
     }
 
     public void addTile(){
