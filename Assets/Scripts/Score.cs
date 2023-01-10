@@ -8,13 +8,15 @@ public class Score : MonoBehaviour
     private int ScoreNumber;
 
     // Start is called before the first frame update
+    //Possibly Add is PV.IsMine
     void Start()
     {
         ScoreNumber = 0;
         scoreText.text = "Score: " + ScoreNumber;
     }
 
-    public void setScore(int score){
+    public void setScore(int score)
+    {
         ScoreNumber = score;
         scoreText.text = "Score: " + ScoreNumber;
     }

@@ -58,4 +58,9 @@ public class GameGrid : MonoBehaviour
 
         return new Vector3(x, 0, y);
     }
+
+    public GameObject[,] getGameGrid()
+    {
+        return gameGrid;
+    }
 }

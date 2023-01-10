@@ -24,9 +24,6 @@ public class MenuManager : MonoBehaviour
     private GameObject m_okModalPrefab;
 
     [SerializeField]
-    private GameObject m_keyboardPrefab;
-
-    [SerializeField]
     private Canvas m_menuCanvas;
 
     /**

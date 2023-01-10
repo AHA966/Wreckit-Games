@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class UserNameInput : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class UserNameInput : MonoBehaviour
         {
             TextInput.text = PlayerPrefs.GetString(PLAYERNAME_KEY);
             m_lastName = TextInput.text;
-            //PhotonNetwork.NickName = m_lastName;
+            PhotonNetwork.NickName = m_lastName;
         }
         
     }
@@ -37,7 +38,7 @@ public class UserNameInput : MonoBehaviour
         {
                 Debug.Log("valid username: " + text);
                 PlayerPrefs.SetString(PLAYERNAME_KEY, text);
-                //PhotonNetwork.NickName = text;
+                PhotonNetwork.NickName = text;
                 m_lastName = text;
         }
     }
