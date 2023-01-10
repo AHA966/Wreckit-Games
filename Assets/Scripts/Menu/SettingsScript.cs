@@ -9,8 +9,11 @@ public class SettingsScript : MonoBehaviour
     
     public const int DEFAULT_QUALITY_LEVEL = 2;
     public const string QUALITY_SETTINGS_KEY = "quality"; 
+    public const string COLOR_BLIND_FILTER = "ColorBlind";
 
     public TMPro.TMP_Dropdown QualityDropdown;
+    public TMPro.TMP_Dropdown ColorBlind;
+    
 
     public void Start()
     {
@@ -30,6 +33,11 @@ public class SettingsScript : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
       Screen.fullScreen = isFullScreen;
+    }
+
+    public void SetColorBlindFilter(int index)
+    {
+      PlayerPrefs.SetInt(COLOR_BLIND_FILTER, index);
     }
     
 }
