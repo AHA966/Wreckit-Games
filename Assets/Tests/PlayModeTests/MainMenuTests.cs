@@ -25,7 +25,7 @@ namespace MenuTests
                 SceneManager.GetActiveScene().name == TestConstants.MAIN_MENU_SCENE_NAME);
 
             //Get Main Menu
-            m_mainMenu = GameObject.Find(TestConstants.MAIN_MENU_NAME);
+            m_mainMenu = GameObject.Find(TestConstants.MAIN_MENU_SCENE_NAME);
             Assert.NotNull(m_mainMenu);
 
             //Get menu button gameobjects
@@ -84,7 +84,7 @@ namespace MenuTests
         public IEnumerator PlayButtonTest()
         {
             //Click Play Button
-            m_playButton.OnClick.Invoke();
+            m_playButton.onClick.Invoke();
 
             yield return new WaitForSeconds(MENU_CHANGE_DELAY);
 
@@ -95,7 +95,7 @@ namespace MenuTests
             );
 
             Assert.IsTrue(
-                MenuManager.GetInstance.CurrentMenu.gameObject.activeSelf
+                MenuManager.GetInstance().CurrentMenu.gameObject.activeSelf
             );
         }
 
@@ -103,7 +103,7 @@ namespace MenuTests
         public IEnumerator SettingsButtonTest()
         {
             //Click Play Button
-            m_settingsButton.OnClick.Invoke();
+            m_settingsButton.onClick.Invoke();
 
             yield return new WaitForSeconds(MENU_CHANGE_DELAY);
 
@@ -114,7 +114,7 @@ namespace MenuTests
             );
 
             Assert.IsTrue(
-                MenuManager.GetInstance.CurrentMenu.gameObject.activeSelf
+                MenuManager.GetInstance().CurrentMenu.gameObject.activeSelf
             );
         }
 
@@ -122,7 +122,7 @@ namespace MenuTests
         public IEnumerator CreateRoomMenuButtonTest()
         {
             //Click Play Button
-            m_createRoomMenuButton.OnClick.Invoke();
+            m_createRoomMenuButton.onClick.Invoke();
 
             yield return new WaitForSeconds(MENU_CHANGE_DELAY);
 
@@ -133,7 +133,7 @@ namespace MenuTests
             );
 
             Assert.IsTrue(
-                MenuManager.GetInstance.CurrentMenu.gameObject.activeSelf
+                MenuManager.GetInstance().CurrentMenu.gameObject.activeSelf
             );
         }
 
@@ -141,7 +141,7 @@ namespace MenuTests
         public IEnumerator JoinRoomMenuButtonTest()
         {
             //Click Play Button
-            m_joinRoomMenuButton.OnClick.Invoke();
+            m_joinRoomMenuButton.onClick.Invoke();
 
             yield return new WaitForSeconds(MENU_CHANGE_DELAY);
 
@@ -152,26 +152,7 @@ namespace MenuTests
             );
 
             Assert.IsTrue(
-                MenuManager.GetInstance.CurrentMenu.gameObject.activeSelf
-            );
-        }
-
-        [UnityTest]
-        public IEnumerator JoinRoomMenuButtonTest()
-        {
-            //Click Play Button
-            m_joinRoomMenuButton.OnClick.Invoke();
-
-            yield return new WaitForSeconds(MENU_CHANGE_DELAY);
-
-            // Check the correct Menu is active
-            Assert.AreEqual(
-                MenuManager.GetInstance().CurrentMenu.GetName(),
-                TestConstants.JOIN_ROOM_MENU_NAME
-            );
-
-            Assert.IsTrue(
-                MenuManager.GetInstance.CurrentMenu.gameObject.activeSelf
+                MenuManager.GetInstance().CurrentMenu.gameObject.activeSelf
             );
         }
 
@@ -179,7 +160,7 @@ namespace MenuTests
         public IEnumerator CreateRoomButtonTest()
         {
             //Click Play Button
-            m_createRoomButton.OnClick.Invoke();
+            m_createRoomButton.onClick.Invoke();
 
             yield return new WaitForSeconds(MENU_CHANGE_DELAY);
 
@@ -190,7 +171,7 @@ namespace MenuTests
             );
 
             Assert.IsTrue(
-                MenuManager.GetInstance.CurrentMenu.gameObject.activeSelf
+                MenuManager.GetInstance().CurrentMenu.gameObject.activeSelf
             );
         }
 
@@ -198,7 +179,7 @@ namespace MenuTests
         public IEnumerator JoinRoomButtonTest()
         {
             //Click Play Button
-            m_joinRoomButton.OnClick.Invoke();
+            m_joinRoomButton.onClick.Invoke();
 
             yield return new WaitForSeconds(MENU_CHANGE_DELAY);
 
@@ -209,7 +190,7 @@ namespace MenuTests
             );
 
             Assert.IsTrue(
-                MenuManager.GetInstance.CurrentMenu.gameObject.activeSelf
+                MenuManager.GetInstance().CurrentMenu.gameObject.activeSelf
             );
         }
 
