@@ -73,11 +73,11 @@ public class GridCell : MonoBehaviourPunCallbacks
                 GetComponentInChildren<SpriteRenderer>().material.color = PlayerColor;
                 touched = true;
 
-                //Movement player = other.collider.GetComponent(typeof(Movement)) as Movement;
-                //Score text = other.collider.GetComponent(typeof(Score)) as Score;
+                Movement player = other.collider.GetComponent(typeof(Movement)) as Movement;
+                Score text = other.collider.GetComponent(typeof(Score)) as Score;
                 
-                //player.addTile();
-                //text.setScore(player.getScore());
+                player.addTile();
+                text.setScore(player.getScore());
         
             }
             

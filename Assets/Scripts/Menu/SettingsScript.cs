@@ -6,18 +6,17 @@ using UnityEngine.UI;
 
 public class SettingsScript : MonoBehaviour
 {
-    /**
+    
     public const int DEFAULT_QUALITY_LEVEL = 2;
     public const string QUALITY_SETTINGS_KEY = "quality"; 
+    public const string COLOR_BLIND_FILTER = "ColorBlind";
 
-    public Slider VolumeSlider;
-    public Dropdown QualityDropdown;
-    public AudioSource ClickSource;
+    public TMPro.TMP_Dropdown QualityDropdown;
+    public TMPro.TMP_Dropdown ColorBlind;
+    
 
     public void Start()
     {
-        // Set slider to correct saved position
-        VolumeSlider.SetValueWithoutNotify(AudioManager.GetMasterVolume());
         
         // Load quality from saved value
         QualityDropdown.value = PlayerPrefs.GetInt(QUALITY_SETTINGS_KEY, DEFAULT_QUALITY_LEVEL);
@@ -25,23 +24,22 @@ public class SettingsScript : MonoBehaviour
         SetQuality(QualityDropdown.value);
     }
 
-    public void SetVolume(float Volume)
-    {
-      AudioManager.SetMasterVolume((int)Volume);
-
-      if(!ClickSource.isPlaying)
-            ClickSource.Play();
-    }
-
     public void SetQuality(int qualityIndex)
     {
       QualitySettings.SetQualityLevel(qualityIndex);
       PlayerPrefs.SetInt(QUALITY_SETTINGS_KEY, qualityIndex);
+      PlayerPrefs.Save();
     }
 
     public void SetFullScreen(bool isFullScreen)
     {
       Screen.fullScreen = isFullScreen;
     }
-    **/
+
+    public void SetColorBlindFilter(int index)
+    {
+      PlayerPrefs.SetInt(COLOR_BLIND_FILTER, index);
+      PlayerPrefs.Save();
+    }
+    
 }
