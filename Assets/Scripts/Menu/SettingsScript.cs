@@ -28,6 +28,7 @@ public class SettingsScript : MonoBehaviour
     {
       QualitySettings.SetQualityLevel(qualityIndex);
       PlayerPrefs.SetInt(QUALITY_SETTINGS_KEY, qualityIndex);
+      PlayerPrefs.Save();
     }
 
     public void SetFullScreen(bool isFullScreen)
@@ -38,6 +39,7 @@ public class SettingsScript : MonoBehaviour
     public void SetColorBlindFilter(int index)
     {
       PlayerPrefs.SetInt(COLOR_BLIND_FILTER, index);
+      PlayerPrefs.Save();
     }
     
 }
